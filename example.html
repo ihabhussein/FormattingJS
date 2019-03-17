@@ -42,7 +42,7 @@
             "1989-07-24",
             new Date(),
             new Date().getTime() + 3601000,
-        ].forEach(el => s = `${s}<tr><td>${f.dateTime(el)}</td><td>${f.relative(el)}</td></tr>`);
+        ].forEach(el => s = `${s}<tr><td>${f.timestamp(el)}</td><td>${f.relative(el)}</td></tr>`);
         document.querySelector('#table1').innerHTML = s;
     };
 

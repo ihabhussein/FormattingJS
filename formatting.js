@@ -4,13 +4,13 @@ function Formatting(l) {
     this.monthName =    n => new Date(1, n - 1, 1).toLocaleString(this.locale, {month: 'long'});
     this.date =         d => new Date(d).toLocaleDateString(this.locale);
     this.time =         d => new Date(d).toLocaleTimeString(this.locale);
-    this.dateTime =     d => new Date(d).toLocaleString(this.locale);
+    this.timestamp =     d => new Date(d).toLocaleString(this.locale);
     this.unixDate =     n => new Date(n * 1000).toLocaleDateString(this.locale);
     this.unixTime =     n => new Date(n * 1000).toLocaleTimeString(this.locale);
-    this.unixDateTime = n => new Date(n * 1000).toLocaleString(this.locale);
+    this.unixTimestamp = n => new Date(n * 1000).toLocaleString(this.locale);
     this.percent =      n => Number(n).toLocaleString(this.locale, {style: 'percent'});
 
-    let distance = d => {
+    let age = d => {
         let units = [
             ['year',   1000 * 60 * 60 * 24 * 365.25],
             ['month',  1000 * 60 * 60 * 24 * 30.43],
@@ -32,7 +32,7 @@ function Formatting(l) {
     this.relative = d => {
         for (let l of [this.locale, this.locale.substring(0, 2), 'en'])
             if (`relative_${l}` in this)
-                return this[`relative_${l}`](distance(d));
+                return this[`relative_${l}`](age(d));
     };
 
     this.relative_en = d => {
