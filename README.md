@@ -107,7 +107,7 @@ Returns a human-friendly fuzzy relative date/time
   or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
 ```javascript
-    Formatting.prototype.unixRelative(d)
+    Formatting.prototype.unixRelative(n)
 ```
 
 Returns a human-friendly fuzzy relative date/time
@@ -116,13 +116,13 @@ Returns a human-friendly fuzzy relative date/time
 
 ## Browser compatibility
 
-### Desktop Browsers:
+### Desktop browsers:
 
 | Chrome | Edge | Firefox | IE | Opera | Safari |
 |:------:|:----:|:-------:|:--:|:-----:|:------:|
 | 24     | Yes  | 29      | 11 | 15    | 10     |
 
-### Mobile Browsers:
+### Mobile browsers:
 
 | Android webview | Chrome for Android | Edge Mobile | Firefox for Android | iOS Safari | Samsung Internet |
 |:---------------:|:------------------:|:-----------:|:-------------------:|:----------:|:----------------:|
