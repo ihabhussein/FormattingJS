@@ -46,15 +46,13 @@ Then instantiate and use `Formatting` in your code. Examples:
   If not given, falls back to the
   `html` element's `lang` attribute. Default: `en`.
 
-### Instance Properties:
+### Instance Methods:
 
 ```javascript
-    Formatting.prototype.locale
+    Formatting.prototype.locale()
 ```
 
-The `Formatting` instance's locale.
-
-### Instance Methods:
+Returns the `Formatting` instance's locale.
 
 ```javascript
     Formatting.prototype.monthName(n)

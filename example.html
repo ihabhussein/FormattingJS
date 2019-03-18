@@ -32,7 +32,7 @@
         for (let i = 1; i <= 12; i++)
             s = `${s}<tr><td>${f.monthName(i)}</td><td>${f.percent(Math.random())}</td></tr>`;
 
-        s = `${s}<tr><td>f.locale</td><td>${f.locale}</td></tr>`;
+        s = `${s}<tr><td>f.locale</td><td>${f.locale()}</td></tr>`;
         s = `${s}<tr><td>f.unixDate(1234567890)</td><td>${f.unixDate(1234567890)}</td></tr>`;
         [
             "2010-07-13",

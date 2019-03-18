@@ -1,14 +1,15 @@
 function Formatting(l) {
-    this.locale = l || document.documentElement.lang || 'en';
+    let _locale = l || document.documentElement.lang || 'en';
 
-    this.monthName =     n => new Date(1, n - 1, 1).toLocaleString(this.locale, {month: 'long'});
-    this.date =          d => new Date(d).toLocaleDateString(this.locale);
-    this.time =          d => new Date(d).toLocaleTimeString(this.locale);
-    this.timestamp =     d => new Date(d).toLocaleString(this.locale);
-    this.unixDate =      n => new Date(n * 1000).toLocaleDateString(this.locale);
-    this.unixTime =      n => new Date(n * 1000).toLocaleTimeString(this.locale);
-    this.unixTimestamp = n => new Date(n * 1000).toLocaleString(this.locale);
-    this.percent =       n => Number(n).toLocaleString(this.locale, {style: 'percent'});
+    this.locale    =    () => _locale;
+    this.monthName =     n => new Date(1, n - 1, 1).toLocaleString(_locale, {month: 'long'});
+    this.date =          d => new Date(d).toLocaleDateString(_locale);
+    this.time =          d => new Date(d).toLocaleTimeString(_locale);
+    this.timestamp =     d => new Date(d).toLocaleString(_locale);
+    this.unixDate =      n => new Date(n * 1000).toLocaleDateString(_locale);
+    this.unixTime =      n => new Date(n * 1000).toLocaleTimeString(_locale);
+    this.unixTimestamp = n => new Date(n * 1000).toLocaleString(_locale);
+    this.percent =       n => Number(n).toLocaleString(_locale, {style: 'percent'});
 
     let age = d => {
         let units = [
@@ -30,7 +31,7 @@ function Formatting(l) {
     };
 
     this.relative = d => {
-        for (let l of [this.locale, this.locale.substring(0, 2), 'en'])
+        for (let l of [_locale, _locale.substring(0, 2), 'en'])
             if (`relative_${l}` in this)
                 return this[`relative_${l}`](age(d));
     };
