@@ -68,12 +68,31 @@ Returns the localized name of a month.
 - `n`: Month number (1&ndash;12).
 
 ```javascript
+    Formatting.percent(n)
+```
+
+Returns a number as localized percentage.
+
+- `n`: Number to be formatted.
+
+```javascript
     Formatting.date(d)
     Formatting.time(d)
     Formatting.timestamp(d)
 ```
 
 Returns the localized formatted date, time, or timestamp.
+
+- `d`: Can be either a `Date` object,
+  a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
+  a string in [simplified ISO&nbsp;8601 format](https://www.w3.org/TR/NOTE-datetime).
+  or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
+
+```javascript
+    Formatting.relative(d)
+```
+
+Returns a human-friendly fuzzy relative date/time
 
 - `d`: Can be either a `Date` object,
   a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
@@ -89,25 +108,6 @@ Returns the localized formatted date, time, or timestamp.
 Returns the localized formatted date, time, or timestamp of a UNIX timestamp.
 
 - `n`: Number of seconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
-
-```javascript
-    Formatting.percent(n)
-```
-
-Returns a number as localized percentage.
-
-- `n`: Number to be formatted.
-
-```javascript
-    Formatting.relative(d)
-```
-
-Returns a human-friendly fuzzy relative date/time
-
-- `d`: Can be either a `Date` object,
-  a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
-  a string in [simplified ISO&nbsp;8601 format](https://www.w3.org/TR/NOTE-datetime).
-  or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
 ```javascript
     Formatting.unixRelative(n)
@@ -133,4 +133,4 @@ Returns a human-friendly fuzzy relative date/time
 
 ## License
 
-Moment.js is freely distributable under the terms of the BSD-2-Clause license.
+`FormattingJS` is freely distributable under the terms of the BSD-2-Clause license.

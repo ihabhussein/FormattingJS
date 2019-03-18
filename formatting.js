@@ -1,5 +1,30 @@
 function Formatting(l) {
-    let locale = l || document.documentElement.lang || 'en';
+    let locale = '';
+
+    let locales = [];
+    for (let s in Formatting)
+        if (s.startsWith('relative_')) locales.push(s.substr(9));
+
+    // Select locale as per RFC 4647 Section 3.4
+    let a = (l || document.documentElement.lang || 'en')
+        .toLowerCase()
+        .replace(/-\*/g, '')
+        .replace('*', '\\w+')
+        .split('-');
+    while (a.length > 0) {
+        let re = new RegExp(`${a.join('-')}`);
+        let found = locales.filter(el => re.exec(el));
+        if (found.length > 0) {
+            locale = found[0];
+            break;
+        };
+
+        do {
+            a = a.slice(0, -1);
+        } while (a.length > 0 && a.slice(-1)[0].length <= 1);
+    };
+    if (locale === '') locale = 'en';
+    let relative = Formatting[`relative_${locale}`];
 
     let age = d => {
         let units = [
@@ -20,27 +45,21 @@ function Formatting(l) {
         return [0, '', ''];
     };
 
-    let block = {
+    return {
         locale:       () => locale,
         monthName:     n => new Date(1, n - 1, 1).toLocaleString(locale, {month: 'long'}),
+        percent:       n => new Number(n).toLocaleString(locale, {style: 'percent'}),
+
         date:          d => new Date(d).toLocaleDateString(locale),
         time:          d => new Date(d).toLocaleTimeString(locale),
         timestamp:     d => new Date(d).toLocaleString(locale),
+        relative:      d => relative(age(d)),
+
         unixDate:      n => new Date(n * 1000).toLocaleDateString(locale),
         unixTime:      n => new Date(n * 1000).toLocaleTimeString(locale),
         unixTimestamp: n => new Date(n * 1000).toLocaleString(locale),
-        percent:       n => new Number(n).toLocaleString(locale, {style: 'percent'}),
-        unixRelative:  n => this.relative(n * 1000),
+        unixRelative:  n => relative(age(n * 1000)),
     };
-
-    for (let l of [locale, locale.substring(0, 2), 'en']) {
-        if (`relative_${l}` in Formatting) {
-            block.relative = d => Formatting[`relative_${l}`](age(d));
-            break;
-        }
-    };
-
-    return block;
 };
 
 Formatting['relative_en'] = d => {
