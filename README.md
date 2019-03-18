@@ -27,18 +27,23 @@ English, you also need to include the approperiate locale file *after*
 Then instantiate and use `Formatting` in your code. Examples:
 
 ```javascript
-    let f = new Formatting('it');
+    let f = Formatting('en');      // English
+    s = f.monthName(2);            // February
+    s = f.unixDate(1234567890);    // 2/14/2009
+    s = f.relative("1989-07-24");  // 30 years ago
+
+    let f = Formatting('it');      // Italian
     s = f.monthName(2);            // febbraio
-    s = f.unixDate(1234567890)};   // 14/2/2009
+    s = f.unixDate(1234567890);    // 14/2/2009
     s = f.relative("1989-07-24");  // 30 anni fa
 ```
 
 ## API Reference
 
-### Constructor:
+### Factory:
 
 ```javascript
-    new Formatting([locale])
+    Formatting([locale])
 ```
 
 - `locale`: Optional. A string with a
@@ -49,13 +54,13 @@ Then instantiate and use `Formatting` in your code. Examples:
 ### Instance Methods:
 
 ```javascript
-    Formatting.prototype.locale()
+    Formatting.locale()
 ```
 
 Returns the `Formatting` instance's locale.
 
 ```javascript
-    Formatting.prototype.monthName(n)
+    Formatting.monthName(n)
 ```
 
 Returns the localized name of a month.
@@ -63,9 +68,9 @@ Returns the localized name of a month.
 - `n`: Month number (1&ndash;12).
 
 ```javascript
-    Formatting.prototype.date(d)
-    Formatting.prototype.time(d)
-    Formatting.prototype.timestamp(d)
+    Formatting.date(d)
+    Formatting.time(d)
+    Formatting.timestamp(d)
 ```
 
 Returns the localized formatted date, time, or timestamp.
@@ -76,9 +81,9 @@ Returns the localized formatted date, time, or timestamp.
   or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
 ```javascript
-    Formatting.prototype.unixDate(n)
-    Formatting.prototype.unixTime(n)
-    Formatting.prototype.unixTimestamp(n)
+    Formatting.unixDate(n)
+    Formatting.unixTime(n)
+    Formatting.unixTimestamp(n)
 ```
 
 Returns the localized formatted date, time, or timestamp of a UNIX timestamp.
@@ -86,7 +91,7 @@ Returns the localized formatted date, time, or timestamp of a UNIX timestamp.
 - `n`: Number of seconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
 ```javascript
-    Formatting.prototype.percent(n)
+    Formatting.percent(n)
 ```
 
 Returns a number as localized percentage.
@@ -94,7 +99,7 @@ Returns a number as localized percentage.
 - `n`: Number to be formatted.
 
 ```javascript
-    Formatting.prototype.relative(d)
+    Formatting.relative(d)
 ```
 
 Returns a human-friendly fuzzy relative date/time
@@ -105,7 +110,7 @@ Returns a human-friendly fuzzy relative date/time
   or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
 ```javascript
-    Formatting.prototype.unixRelative(n)
+    Formatting.unixRelative(n)
 ```
 
 Returns a human-friendly fuzzy relative date/time

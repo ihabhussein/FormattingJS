@@ -27,7 +27,7 @@
 
     <script>
     let refresh = l => {
-        let f = new Formatting(l), s = '';
+        let f = Formatting(l), s = '';
 
         for (let i = 1; i <= 12; i++)
             s = `${s}<tr><td>${f.monthName(i)}</td><td>${f.percent(Math.random())}</td></tr>`;

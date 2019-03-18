@@ -1,4 +1,4 @@
-if ('Formatting' in window) Formatting.prototype['relative_it'] = d => {
+if ('Formatting' in window) Formatting['relative_it'] = d => {
     let units = {
         second: ['un secondo',    'secondi'],
         minute: ['un minuto',     'minuti'],
