@@ -1,15 +1,5 @@
 function Formatting(l) {
-    let _locale = l || document.documentElement.lang || 'en';
-
-    this.locale    =    () => _locale;
-    this.monthName =     n => new Date(1, n - 1, 1).toLocaleString(_locale, {month: 'long'});
-    this.date =          d => new Date(d).toLocaleDateString(_locale);
-    this.time =          d => new Date(d).toLocaleTimeString(_locale);
-    this.timestamp =     d => new Date(d).toLocaleString(_locale);
-    this.unixDate =      n => new Date(n * 1000).toLocaleDateString(_locale);
-    this.unixTime =      n => new Date(n * 1000).toLocaleTimeString(_locale);
-    this.unixTimestamp = n => new Date(n * 1000).toLocaleString(_locale);
-    this.percent =       n => Number(n).toLocaleString(_locale, {style: 'percent'});
+    let locale = l || document.documentElement.lang || 'en';
 
     let age = d => {
         let units = [
@@ -30,21 +20,35 @@ function Formatting(l) {
         return [0, '', ''];
     };
 
-    this.relative = d => {
-        for (let l of [_locale, _locale.substring(0, 2), 'en'])
-            if (`relative_${l}` in this)
-                return this[`relative_${l}`](age(d));
+    let block = {
+        locale:       () => locale,
+        monthName:     n => new Date(1, n - 1, 1).toLocaleString(locale, {month: 'long'}),
+        date:          d => new Date(d).toLocaleDateString(locale),
+        time:          d => new Date(d).toLocaleTimeString(locale),
+        timestamp:     d => new Date(d).toLocaleString(locale),
+        unixDate:      n => new Date(n * 1000).toLocaleDateString(locale),
+        unixTime:      n => new Date(n * 1000).toLocaleTimeString(locale),
+        unixTimestamp: n => new Date(n * 1000).toLocaleString(locale),
+        percent:       n => new Number(n).toLocaleString(locale, {style: 'percent'}),
+        unixRelative:  n => this.relative(n * 1000),
     };
 
-    this.unixRelative = n => this.relative(n * 1000);
-
-    this.relative_en = d => {
-        if (d[0] == 0) {
-            return 'now';
-        } else {
-            let prefix = d[2] == 'future'? 'in ': '';
-            let suffix = d[2] == 'future'? '': ' ago';
-            return `${prefix}${d[0]} ${d[1]}${d[0]==1?'':'s'}${suffix}`;
+    for (let l of [locale, locale.substring(0, 2), 'en']) {
+        if (`relative_${l}` in Formatting) {
+            block.relative = d => Formatting[`relative_${l}`](age(d));
+            break;
         }
     };
+
+    return block;
+};
+
+Formatting['relative_en'] = d => {
+    if (d[0] == 0) {
+        return 'now';
+    } else {
+        let prefix = d[2] == 'future'? 'in ': '';
+        let suffix = d[2] == 'future'? '': ' ago';
+        return `${prefix}${d[0]} ${d[1]}${d[0]==1?'':'s'}${suffix}`;
+    }
 };

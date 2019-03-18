@@ -1,4 +1,4 @@
-if ('Formatting' in window) Formatting.prototype['relative_ar-EG'] = d => {
+if ('Formatting' in window) Formatting['relative_ar-EG'] = d => {
     let units = {
         second: ['ثانية', 'ثانيتين', 'ثواني'],
         minute: ['دقيقة', 'دقيقتين', 'دقائق'],
