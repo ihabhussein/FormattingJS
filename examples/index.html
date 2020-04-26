@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        table { border-collapse: collapse; border-top: 2px solid gray; margin: 1em;}
+        td {padding: 3pt 1em; border-bottom: 1px solid gray;}
+    </style>
+</head>
+<body>
+    <select id="lang">
+        <option value="">html element lang attribute</option>
+    </select>
+    <table id="table1"></table>
+
+    <script src="../lib/formatting.js"></script>
+    <script src="../lib/locale/ar.js"></script>
+    <script src="../lib/locale/ar-EG.js"></script>
+    <script src="../lib/locale/it.js"></script>
+    <script src="../lib/locale/fr.js"></script>
+
+    <script>
+        let langList = document.querySelector('#lang');
+        // Populate the locale list using loaded locale files
+        for (let k in Formatting) {
+            let a = /^relative_(.+)$/.exec(k);
+            if (a) langList.innerHTML = langList.innerHTML + `<option>${a[1]}</option>`;
+        };
+
+        // Data for display
+        let months = Array.apply(0, Array(12)).map((v, i) => [i + 1, Math.random()]);
+        let dates = [
+            "2011-01-28",
+            "2019-11-10",
+            "2020-01-17",
+            "2021-01-01",
+            "1989-07-24",
+        ];
+
+        let refresh = l => {
+            let now = new Date().getTime();
+            let f = Formatting(l),
+                s = `
+                    <tr><td>f.locale</td><td>${f.locale()}</td></tr>
+                    <tr><td>f.unixDate(1234567890)</td><td>${f.unixDate(1234567890)}</td></tr>
+                `;
+
+            months.forEach(d => s = `
+                ${s}
+                <tr><td>${f.monthName(d[0])}</td><td>${f.percent(d[1])}</td></tr>
+            `);
+
+            [...dates, now - 3601000, now, now + 3601000].forEach(el => s = `
+                ${s}
+                <tr><td>${f.timestamp(el)}</td><td>${f.relative(el)}</td></tr>
+            `);
+
+            document.querySelector('#table1').innerHTML = s;
+        };
+
+        langList.addEventListener('change', ev => refresh(ev.target.value));
+        refresh();
+    </script>
+</body>
+</html>
