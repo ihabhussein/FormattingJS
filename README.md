@@ -27,15 +27,18 @@ English, you also need to include the approperiate locale file *after*
 Then instantiate and use `Formatting` in your code. Examples:
 
 ```javascript
-    let f = Formatting('en');      // English
-    s = f.monthName(2);            // February
-    s = f.unixDate(1234567890);    // 2/14/2009
-    s = f.relative("1989-07-24");  // 30 years ago
+    let f = Formatting()            // Pick up the document's lang attribute (default: en)
+    let f = Formatting('en');       // OR, explicitly choose locale
 
-    let f = Formatting('it');      // Italian
-    s = f.monthName(2);            // febbraio
-    s = f.unixDate(1234567890);    // 14/2/2009
-    s = f.relative("1989-07-24");  // 30 anni fa
+    // English (en)
+    s = f.monthName(2);             // February
+    s = f.unixDate(1234567890);     // 2/14/2009
+    s = f.relative("1989-07-24");   // 30 years ago
+
+    // Italian (it)
+    s = f.monthName(2);             // febbraio
+    s = f.unixDate(1234567890);     // 14/2/2009
+    s = f.relative("1989-07-24");   // 30 anni fa
 ```
 
 ## API Reference
