@@ -23,13 +23,14 @@
     <script>
         let langList = document.querySelector('#lang');
         // Populate the locale list using loaded locale files
-        for (let k in Formatting) {
-            let a = /^relative_(.+)$/.exec(k);
-            if (a) langList.innerHTML = langList.innerHTML + `<option>${a[1]}</option>`;
-        };
+        Formatting().locales().forEach(l => {
+            let o = document.createElement('option');
+            o.innerText = l;
+            langList.appendChild(o);
+        });
 
         // Data for display
-        let months = Array.apply(0, Array(12)).map((v, i) => [i + 1, Math.random()]);
+        let months = Array.apply(null, Array(12)).map((v, i) => [i + 1, Math.random()]);
         let dates = [
             "2011-01-28",
             "2019-11-10",

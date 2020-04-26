@@ -63,6 +63,12 @@ Then instantiate and use `Formatting` in your code. Examples:
 Returns the `Formatting` instance's locale.
 
 ```javascript
+    Formatting.locales()
+```
+
+Returns a sorted list of locales loaded in the `Formatting` instance.
+
+```javascript
     Formatting.monthName(n)
 ```
 
@@ -126,13 +132,13 @@ Returns a human-friendly fuzzy relative date/time
 
 | Chrome | Edge | Firefox | IE | Opera | Safari |
 |:------:|:----:|:-------:|:--:|:-----:|:------:|
-| 24     | Yes  | 29      | 11 | 15    | 10     |
+| 24     | 12   | 29      | 11 | 15    | 10     |
 
 ### Mobile browsers:
 
 | Android webview | Chrome for Android | Edge Mobile | Firefox for Android | iOS Safari | Samsung Internet |
 |:---------------:|:------------------:|:-----------:|:-------------------:|:----------:|:----------------:|
-| 4.4             | 26                 | Yes         | 56                  | 10         | Yes              |
+| 4.4             | 26                 | Yes         | 56                  | 10         | 4              |
 
 ## License
 
