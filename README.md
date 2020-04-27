@@ -45,86 +45,64 @@ Then instantiate and use `Formatting` in your code. Examples:
 
 ### Factory:
 
-```javascript
-    Formatting([locale])
-```
+#### `Formatting(locale)`
 
-- `locale`: Optional. A string with a
+_locale_: Optional. A string with a
   [BCP 47](http://tools.ietf.org/html/rfc5646) language tag.
   If not given, falls back to the
   `html` element's `lang` attribute. Default: `en`.
 
 ### Instance Methods:
 
-```javascript
-    Formatting.locale()
-```
+#### `locale()`
 
 Returns the `Formatting` instance's locale.
 
-```javascript
-    Formatting.locales()
-```
+#### `locales()`
 
 Returns a sorted list of locales loaded in the `Formatting` instance.
 
-```javascript
-    Formatting.monthName(n)
-```
+#### `monthName(n)`
 
 Returns the localized name of a month.
 
-- `n`: Month number (1&ndash;12).
+_n_: Month number (1&ndash;12).
 
-```javascript
-    Formatting.percent(n)
-```
+#### `percent(n)`
 
 Returns a number as localized percentage.
 
-- `n`: Number to be formatted.
+_n_: Number to be formatted.
 
-```javascript
-    Formatting.date(d)
-    Formatting.time(d)
-    Formatting.timestamp(d)
-```
+#### `date(d)`<br>`time(d)`<br>`timestamp(d)`
 
 Returns the localized formatted date, time, or timestamp.
 
-- `d`: Can be either a `Date` object,
-  a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
-  a string in [simplified ISO&nbsp;8601 format](https://www.w3.org/TR/NOTE-datetime).
-  or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
+_d_: Can be either a `Date` object,
+a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
+a string in [simplified ISO&nbsp;8601 format](https://www.w3.org/TR/NOTE-datetime).
+or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
-```javascript
-    Formatting.relative(d)
-```
+#### `relative(d)`
 
 Returns a human-friendly fuzzy relative date/time
 
-- `d`: Can be either a `Date` object,
-  a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
-  a string in [simplified ISO&nbsp;8601 format](https://www.w3.org/TR/NOTE-datetime).
-  or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
+_d_: Can be either a `Date` object,
+a string representing an [RFC&nbsp;2822 timestamp](https://tools.ietf.org/html/rfc2822#section-3.3),
+a string in [simplified ISO&nbsp;8601 format](https://www.w3.org/TR/NOTE-datetime).
+or number of milliseconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
-```javascript
-    Formatting.unixDate(n)
-    Formatting.unixTime(n)
-    Formatting.unixTimestamp(n)
-```
+#### `unixDate(n)`<br>`unixTime(n)`<br>`unixTimestamp(n)`
 
 Returns the localized formatted date, time, or timestamp of a UNIX timestamp.
 
-- `n`: Number of seconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
+_n_: Number of seconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
-```javascript
-    Formatting.unixRelative(n)
-```
+#### `unixRelative(n)`
 
 Returns a human-friendly fuzzy relative date/time
 
-- `n`: Number of seconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
+_n_: Number of seconds since January&nbsp;1, 1970, 00:00:00&nbsp;UTC.
 
 ## Browser compatibility
 
